@@ -12,7 +12,8 @@ function Filter(props) {
     
       posts.forEach(post => {
         const postTitle = post.querySelector('.title').textContent.toLowerCase()  
-        if (postTitle.includes(inputValue)){
+        const postBody = post.querySelector('.count').textContent.toLowerCase()  
+        if (postTitle.includes(inputValue) || postBody.includes(inputValue)){
           post.style.display = 'flex'
           return
         }

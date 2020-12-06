@@ -1,0 +1,45 @@
+.main-container{
+  display: flex;
+}
+
+.users-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+}
+
+.users-cards-container{
+  padding: 2rem 2rem;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 100%;
+}
+
+.users-cards-container .card-item{
+  margin: .5rem .5rem;
+}
+
+.users-cards-container .card-item img{
+  max-width: 15rem;
+  max-height: 15rem;
+}
+
+.users-cards-container .card-item .title{
+  font: 600 1rem Roboto;
+  color: var(--color-text)
+}
+
+.users-cards-container .card-item .icon-container{
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-evenly
+}
+
+.users-cards-container .card-item .icon-container img{
+  width: 32px;
+  height: 32px;
+}

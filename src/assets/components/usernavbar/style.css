@@ -1,0 +1,24 @@
+.asside-main{
+  background-color: var(--color-background-secondary);
+  width: fit-content;
+  height: 95vh;
+}
+
+.asside-main .asside-content{
+  width: 10vh;
+  color: #fff;
+  padding: 2rem;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+  background-color: var(--color-background-secondary);
+  border-radius: 20px;
+
+}
+
+.asside-main .asside-content:hover{
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text);
+}
