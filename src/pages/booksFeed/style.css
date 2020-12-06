@@ -9,20 +9,6 @@
   width: 90vw;
 }
 
-.filter-container {
-  margin-top: 20px;
-  width: 80vw;
-  max-width: 800px;
-}
-
-.filter {
-  width: 100%;
-  padding: 12px;
-  font-size: 16px;
-  border: 0;
-  border-radius: 10px;
-}
-
 .books-cards-container{
   padding: 2rem 2rem;
   display: flex;

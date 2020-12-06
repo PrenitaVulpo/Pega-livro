@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import NavBar from '../../assets/components/navbar/navbar';
 import Card from '../../assets/components/card/card';
+import Filter from '../../assets/components/filter/filter';
 import Api from '../../services/api';
 import Edit from '../../assets/images/edit.svg';
 import Delete from '../../assets/images/delete.svg';
@@ -9,9 +10,9 @@ import './style.css';
 // import { Container } from './styles';
 
 function BooksFeed() {
-  const [books, setBooks] = useState([])
-  
-
+  const [books, setBooks] = useState([{
+    title: 'loading'
+  }])
 
   useEffect(() => {
     Api.get('books').then(response=>{
@@ -19,31 +20,13 @@ function BooksFeed() {
     }).catch(error=>{
       alert(error.message)
     })
-
-    const filterInput = document.querySelector('#filter')
-    filterInput.addEventListener('input', event =>{
-      const inputValue = event.target.value.toLowerCase()
-      const posts = document.querySelectorAll('.card-item')
-    
-      posts.forEach(post => {
-        const postTitle = post.querySelector('.title').textContent.toLowerCase()  
-        if (postTitle.includes(inputValue)){
-          post.style.display = 'flex'
-          return
-        }
-        post.style.display = 'none'
-      })
-    })
   },[])
 
   return (
     <div className="main-container">
       <NavBar/>
       <div className="books-container">
-        <div className="filter-container">
-          <input type="text" id="filter"
-              className="filter" placeholder="Pesquisar livros" autofocus/>
-        </div>
+        <Filter Name="Pesquisar livros"/>
         <div className="books-cards-container">
           {books.map(book=>{
             console.log(book)
@@ -58,7 +41,7 @@ function BooksFeed() {
                     <img src={Delete} alt="deletar" className="delete"/>
                   </div>
                 </Card>
-                </div>
+              </div>
             )
           })}
         </div>
