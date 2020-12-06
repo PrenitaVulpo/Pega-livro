@@ -1,0 +1,43 @@
+.cadastro-main{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.cadastro-main:first-child{
+  margin-bottom: 100px;
+  color: var(--color-text)
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#cadastro-button{
+  font: 600 1.5rem Roboto;
+  color: var(--color-text-secondary);
+  width: 60%;
+  border: 2px solid;
+  border-color: var(--color-background-main);
+  border-radius: 25px;
+  transition: 0.2s;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  background-color: var(--color-background-main);
+}
+
+#cadastro-button:hover{
+  background-color: var(--color-background-tertiary);
+  color: var(--color-text)
+}
+
+#link-text{
+  font: 400 1rem Roboto;
+  color: var(--color-text);
+  text-decoration: none;
+}
