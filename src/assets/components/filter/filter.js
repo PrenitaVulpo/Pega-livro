@@ -3,7 +3,7 @@ import './style.css'
 
 // import { Container } from './styles';
 
-function Filter(props) {
+function Filter(props,{...rest}) {
   useEffect(() => {
     const filterInput = document.querySelector('#filter')
     filterInput.addEventListener('input', event =>{
@@ -25,7 +25,7 @@ function Filter(props) {
   return (
     <div className="filter-container">
       <input type="text" id="filter" name={props.Name}
-          className="filter" placeholder={props.Name} autofocus/>
+          className="filter" placeholder={props.Name} autoFocus value={props.Value}/>
     </div>
   );
 }

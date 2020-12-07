@@ -28,7 +28,6 @@ function UserBookFeed() {
         <Filter Name="Pesquisar livros"/>
         <div className="books-cards-container">
           {books.map(book=>{
-            console.log(book)
             return(
               <div className="card-item" key={book.id}>
                 <Card>

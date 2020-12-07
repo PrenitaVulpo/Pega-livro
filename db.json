@@ -350,12 +350,16 @@
   "rents": [
     {
       "id": 1,
-      "user_id": 1,
       "user_name": "Esteban_Ziemann",
-      "book_id": 1,
       "book_name": "wireless mint green",
       "date_rental": "2020-12-10",
       "date_return": "2020-12-17"
+    },
+    {
+      "user_name": "Abagail_Rau15",
+      "book_name": "Branding Idaho",
+      "date_rental": "2020-12-24",
+      "id": 10
     }
   ]
 }

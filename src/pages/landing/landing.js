@@ -22,7 +22,9 @@ function Landing({username, header, dispatch}) {
     })
     if (holder.password === password){
       localStorage.setItem("token", holder.token);
+      localStorage.setItem("user", holder.name);
       dispatch(LoginAction.toggleLogin(login,holder.token, holder.user_type));
+      console.log(login)
       if(holder.user_type === 1){
         history.push('/books')
       } else{

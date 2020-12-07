@@ -1,29 +1,43 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Card from '../../assets/components/card/card';
 import NavBar from '../../assets/components/usernavbar/navbar';
 import Button from '../../assets/components/button/button';
 import Api from '../../services/api';
+import {connect} from 'react-redux';
 import './style.css';
 
 
 
-function Checkout({match}) {
-  const [book, setBook] = useState([{
+function Checkout({username, match}) {
+  const [book, setBook] = useState({
     title: 'loading'
-  }])
+  })
+  const [date,setDate] = useState('')
 
   const id = match.params.id
+  const name = username
+  const history = useHistory();
 
   useEffect(() => {
     Api.get(`books/${id}`).then(response=>{
+      console.log(response.data)
       setBook(response.data)
     }).catch(error=>{
       alert(error.message)
     })
   },[id])
 
-  function handleSubmit(){
+  async function handleSubmit(){
+    console.log("livro",book)
+
+    let data = {
+      "user_name": name,
+      "book_name": book.title,
+      "date_rental": date
+    }
+    await Api.post('rents', data)
+    history.push('/home')
   }
   return (
     <div className="main-container">
@@ -41,6 +55,7 @@ function Checkout({match}) {
               <div className="input-edit">
                 <label htmlFor="Quantidade disponível">Quantidade disponível: {book.count}</label>
               </div>
+              <input type="date" onChange={(e)=>setDate(e.target.value)}/>
             </div>
           </div>
           <div className="buttons-container">
@@ -55,4 +70,4 @@ function Checkout({match}) {
   );
 }
 
-export default Checkout;
+export default connect(state=>({username: state.user}))(Checkout);

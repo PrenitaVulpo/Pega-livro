@@ -12,13 +12,14 @@ function NavBar({dispatch}) {
 
   async function handleExit(){
     await localStorage.removeItem("token");
+    await localStorage.removeItem("user");
     await dispatch(LoginAction.toggleLogin(user,token))
     history.push('/');
   }
   return (
     <div>
       <aside className="asside-main">
-        <Link to="/books">
+        <Link to="/home">
           <div className="asside-content">
             Livros
           </div>

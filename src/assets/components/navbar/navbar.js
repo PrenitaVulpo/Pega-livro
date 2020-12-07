@@ -13,6 +13,7 @@ function NavBar({dispatch}) {
 
   async function handleExit(){
     await localStorage.removeItem("token");
+    await localStorage.removeItem("user");
     await dispatch(LoginAction.toggleLogin(user,token))
     history.push('/');
   }

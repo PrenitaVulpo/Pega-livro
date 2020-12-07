@@ -8,7 +8,7 @@ function CustomRoutes({token, user, component: Component, ...rest}) {
   return (
     <Route {...rest}
       render={props => {
-        if ((token || localStorage.getItem("token")) && user == 1){
+        if (token || localStorage.getItem("token")){
           return <Component {...props}/>
         } else {
           return <Redirect to={{
