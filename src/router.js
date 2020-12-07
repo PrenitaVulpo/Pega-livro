@@ -5,6 +5,7 @@ import CadastroPage from './pages/cadastro/cadastro.js';
 import BooksFeed from './pages/booksFeed/booksfeed.js';
 import EditBook from './pages/editBook/editbook.js';
 import UsersList from './pages/usersFeed/usersfeed.js';
+import CreateBook from './pages/createBook/createbook';
 import UserHome from './pages/userBookFeed/userbookfeed';
 import Checkout from './pages/checkout/checkout';
 
@@ -18,6 +19,7 @@ function Router() {
         <Route exact path="/cadastro" component={CadastroPage} />
         <Route exact path="/books" component={BooksFeed} />
         <Route exact path="/books/:id" component={EditBook} />
+        <Route exact path="/createBook" component={CreateBook} />
         <Route exact path="/users" component={UsersList} />
         <Route exact path="/checkout/:id" component={Checkout} />
       </Switch>

@@ -13,14 +13,22 @@ function BooksFeed() {
   const [books, setBooks] = useState([{
     title: 'loading'
   }])
-
-  useEffect(() => {
-    Api.get('books').then(response=>{
+  async function apiCall(){
+    await Api.get('books').then(response=>{
       setBooks(response.data)
     }).catch(error=>{
       alert(error.message)
     })
+  }
+  useEffect(() => {
+    apiCall()
   },[])
+  async function handleDelete(id){
+    await Api.delete(`books/${id}`).catch(error=>{
+      alert("não foi possível deletar a entrada")
+    })
+    apiCall()
+  }
 
   return (
     <div className="main-container">
@@ -42,7 +50,7 @@ function BooksFeed() {
                       <Link to={`/books/${book.id}`}>
                         <img src={Edit} alt="editar" className="edit"/>
                       </Link>
-                      <img src={Delete} alt="deletar" className="delete"/>
+                      <img src={Delete} alt="deletar" className="delete" onClick={()=>handleDelete(book.id)}/>
                     </div>
                     </>
                   : <p className="title">{book.title}</p>}

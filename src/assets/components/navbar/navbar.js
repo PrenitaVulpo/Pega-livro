@@ -1,9 +1,21 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as LoginAction from '../../../store/actions/toggleSession';
 import './style.css';
 
 
-function NavBar() {
+function NavBar({dispatch}) {
+
+  const history = useHistory();
+  let user = '';
+  let token = '';
+
+  async function handleExit(){
+    await localStorage.removeItem("token");
+    await dispatch(LoginAction.toggleLogin(user,token))
+    history.push('/');
+  }
   return (
     <div>
       <aside className="asside-main">
@@ -17,14 +29,17 @@ function NavBar() {
             Usuários
           </div>
         </Link>
-        <Link to="/books">
+        <Link to="/createBook">
           <div className="asside-content">
-            Locações
+            Adicionar livro
           </div>
         </Link>
+        <div className="asside-content" onClick={handleExit}>
+            Sair
+        </div>
       </aside>
     </div>
   )
 }
 
-export default NavBar;
+export default connect(state=>({}) )(NavBar);

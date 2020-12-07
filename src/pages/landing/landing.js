@@ -11,19 +11,23 @@ import './style.css';
 function Landing({username, header, dispatch}) {
   const [login, setLogin] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
 
   async function handleSubmit(){
     let holder = null
     await Api.get(`users/?name=${login}`).then(response=>{
       holder = response.data[0]
-      console.log(holder)
     }).catch(error=>{
       alert(error.message)
     })
     if (holder.password === password){
       localStorage.setItem("token", holder.token);
-      dispatch(LoginAction.toggleLogin(login,holder.token));
-      alert("logado com sucesso!")
+      dispatch(LoginAction.toggleLogin(login,holder.token, holder.user_type));
+      if(holder.user_type === 1){
+        history.push('/books')
+      } else{
+        history.push('/home')
+      }
     } else {
       alert("A senha não confere")
     }

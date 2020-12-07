@@ -1,8 +1,9 @@
-export function toggleLogin(user, token){
+export function toggleLogin(user, token, user_type){
   return{
     type: 'TOGGLE_LOGIN',
     user, 
-    token
+    token,
+    user_type
 
   }
 }

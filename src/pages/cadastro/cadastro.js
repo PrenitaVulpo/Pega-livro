@@ -14,17 +14,38 @@ function Cadastro() {
   const [warning, setWarning] = useState('');
   const history = useHistory();
 
+  function makeid(length) {
+    var result           = '';
+    var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    var charactersLength = characters.length;
+    for ( var i = 0; i < length; i++ ) {
+       result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+  function checkFields(){
+    const notEmpty = (user && password && email)
+    if (notEmpty && (password === password2)){
+      return true
+    }
+    return false
+  }
 
   async function handleSubmit(e){
     e.preventDefault()
-    let data = `{
-      "username": "${user}",
-      "password": "${password}",
-      "email": "${email}"
-    }`
-    if(warning === ''){
+    let date = new Date();
+    let data = {
+      "createdAt": `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}T${date.getHours()}`+
+      `:${date.getMinutes()}:${date.getSeconds()}`,
+      "name": `${user}`,
+      "password": `${password}`,
+      "email": `${email}`,
+      "token": `${makeid(8)}-${makeid(4)}-${makeid(4)}-${makeid(4)}-c7b6ee95561e`
+    }
+    if(checkFields()){
     await Api.post('/users', data).then(response=>{
-      console.log(response.data);
+      history.push('/')
     }).catch(error=>{
       setWarning(error.message)
     })
